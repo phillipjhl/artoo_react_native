@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,10 +7,10 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import {enableScreens} from 'react-native-screens';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import { enableScreens } from 'react-native-screens';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import LineGraph from './js/components/Chart';
 
 enableScreens();
@@ -21,10 +21,10 @@ function HomeScreen() {
     // setInterval(getData(), 180000);
   }, []);
 
-  const [data, setData] = useState({sensorData: {temp: '', humidity: ''}});
+  const [data, setData] = useState({ sensorData: { temp: '', humidity: '' } });
 
   function getData() {
-    fetch('http://192.168.0.107:8000/api/sensors/data/', {
+    fetch('http://192.168.0.115:8000/api/sensors/data/', {
       headers: {
         Accept: 'application/json',
       },
@@ -39,19 +39,19 @@ function HomeScreen() {
             humidity: json.filter((a, b) => a.name == 'humidity'),
           },
         });
-      });
+      }).catch(error => console.error(error));
   }
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home!</Text>
-      <LineGraph domain={{y: [20, 30]}} data={data.sensorData.temp} />
+      <LineGraph domain={{ y: [20, 30] }} data={data.sensorData.temp} />
     </View>
   );
 }
 
 function SettingsScreen() {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Settings!</Text>
     </View>
   );
@@ -59,7 +59,7 @@ function SettingsScreen() {
 
 function LoginScreen() {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Login</Text>
     </View>
   );
@@ -97,14 +97,14 @@ export default function App() {
   };
 
   const createScreens = (screens) => {
-    return Object.entries({...screens}).map(
-      ([key, {name, component, options}]) => {
+    return Object.entries({ ...screens }).map(
+      ([key, { name, component, options }]) => {
         return (
           <AppTabNav.Screen
             key={name}
             name={name}
             component={component}
-            options={{...options}}
+            options={{ ...options }}
           />
         );
       },
@@ -122,12 +122,12 @@ export default function App() {
         {isSignedIn ? (
           <RootStack.Screen name="App" component={TabNav} />
         ) : (
-          <RootStack.Screen
-            name={'Login'}
-            component={LoginScreen}
-            options={{headerShown: false}}
-          />
-        )}
+            <RootStack.Screen
+              name={'Login'}
+              component={LoginScreen}
+              options={{ headerShown: false }}
+            />
+          )}
       </RootStack.Navigator>
     </NavigationContainer>
   );
