@@ -150,12 +150,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-        upload {
-            storeFile file(UPLOAD_STORE_FILE)
-            storePassword UPLOAD_STORE_PASSWORD
-            keyAlias UPLOAD_KEY_ALIAS
-            keyPassword UPLOAD_KEY_PASSWORD
-        }
+        // upload {
+        //     storeFile file(UPLOAD_STORE_FILE)
+        //     storePassword UPLOAD_STORE_PASSWORD
+        //     keyAlias UPLOAD_KEY_ALIAS
+        //     keyPassword UPLOAD_KEY_PASSWORD
+        // }
     }
     buildTypes {
         debug {
