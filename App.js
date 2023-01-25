@@ -23,7 +23,7 @@ function HomeScreen() {
     fetch('http://192.168.0.115/api/sensors/data/?sensorId=1', {
       headers: {
         Accept: 'application/json',
-        Authorization: `Bearer `
+        Authorization: `Bearer xMINRgzjA6yzKbTHNzUGx3sk5BzI0q`
       },
       method: 'GET',
     })
